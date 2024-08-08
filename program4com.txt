@@ -326,6 +326,7 @@ def autonomous_Block():
 
 
 def autonomous_Slicon():
+
     #ซ้าย
     if  distance_sensor_1.get_distance() <= 30:
         time.sleep(0.01)
@@ -377,6 +378,7 @@ def autonomous_Slicon():
         time.sleep(1.25)
         power_expand_board.stop("BL1")
         power_expand_board.stop("BL2")
+       #ขวา
     else:
         time.sleep(0.01)
         
@@ -452,16 +454,9 @@ distance_sensor_1 = ranging_sensor_class("PORT3", "INDEX1")
 
 
 while True:
-    if count == 0:
-        if power_manage_module.is_auto_mode() :
-            auto = True
-            count = 1
-    elif gamepad.is_key_pressed("R2") and  gamepad.is_key_pressed("≡") :
-        count = 0
-
-    if auto == True:
-        autonomous_Slicon()
-        auto = False
+    
+    if power_manage_module.is_auto_mode() :
+ 	  autonomous_Slicon()
     else:
         movement(speedlimit)
         control()
